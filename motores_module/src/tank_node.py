@@ -1,0 +1,52 @@
+#!/usr/bin/env python
+import roslib
+import rospy
+import math
+
+
+from std_msgs.msg import Float32
+from std_msgs.msg import Float32MultiArray
+from geometry_msgs.msg import Vector3
+from tankMode import tank 
+
+class tank_node:
+    def __init__(self):
+        self.mctl = Vector3()
+        self.mctl2 = Vector3()
+        self.mctl_rsrt = Vector3()
+        self.speed = Float32MultiArray()
+        self.rover = tank(port='ttyACM0',baud='115200',pwmLimit=102.00,motorsID=[128,129,130,131,132,133])
+        #self.rover = tank(port='ttyACM0',baud='38400',pwmLimit=102.00,motorsID=[128,128,128,128,128,128])
+
+        rospy.Subscriber('/Motors/left_vel',Float32,self.left)
+        rospy.Subscriber('/Motors/right_vel',Float32,self.right)
+
+        #speed_pub = rospy.Publisher('/Motors/motors_speed',Float32MultiArray,queue_size=10)
+        
+        r = rospy.Rate(1000)
+        while not rospy.is_shutdown():
+            #rospy.loginfo(self.speed)
+            #print(self.mctl)
+            #rospy.loginfo(self.mctl)
+            self.speed.data = self.rover.tankDrive(self.mctl)
+            if self.mctl.y+.1==self.mctl2.y and self.mctl.x+.1==self.mctl2.x:
+                self.speed.data = self.rover.tankDrive(self.mctl_rsrt)
+            
+            #speed_pub.publish(self.speed)
+            r.sleep()
+
+
+    def right(self,vel):
+        self.mctl.y = vel.data
+        self.mctl2.y = vel.data+.01
+
+    def left(self,vel):
+        self.mctl.x = vel.data
+        self.mctl2.x = vel.data+.01
+
+if __name__=="__main__":
+    rospy.init_node('MotorsAlv')
+    try:
+        tank_node()
+    except:
+        pass
