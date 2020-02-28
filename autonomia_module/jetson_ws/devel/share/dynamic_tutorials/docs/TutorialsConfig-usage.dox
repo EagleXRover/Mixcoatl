@@ -1,9 +1,0 @@
-\subsubsection usage Usage
-\verbatim
-<node name="dynamic_tutorials" pkg="dynamic_tutorials" type="dynamic_tutorials">
-  <param name="h_lower" type="int" value="22" />
-  <param name="s_lower" type="int" value="20" />
-  <param name="v_lower" type="int" value="86" />
-</node>
-\endverbatim
-

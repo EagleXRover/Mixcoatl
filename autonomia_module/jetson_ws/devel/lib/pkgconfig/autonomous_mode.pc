@@ -1,8 +1,0 @@
-prefix=/home/nvidia/jetson_ws/devel
-
-Name: autonomous_mode
-Description: Description of autonomous_mode
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/nvidia/jetson_ws/devel/lib 
-Requires: 
