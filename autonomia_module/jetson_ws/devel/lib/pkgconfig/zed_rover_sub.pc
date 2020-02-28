@@ -1,0 +1,8 @@
+prefix=/home/nvidia/jetson_ws/devel
+
+Name: zed_rover_sub
+Description: Description of zed_rover_sub
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/nvidia/jetson_ws/devel/lib 
+Requires: 

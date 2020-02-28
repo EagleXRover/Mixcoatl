@@ -1,0 +1,8 @@
+prefix=/home/nvidia/jetson_ws/devel
+
+Name: gps_ros_test
+Description: Description of gps_ros_test
+Version: 0.0.0
+Cflags: -I/home/nvidia/jetson_ws/devel/include
+Libs: -L/home/nvidia/jetson_ws/devel/lib 
+Requires: geometry_msgs message_generation message_runtime roscpp rospy std_msgs

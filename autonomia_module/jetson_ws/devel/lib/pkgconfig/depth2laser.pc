@@ -1,0 +1,8 @@
+prefix=/home/nvidia/jetson_ws/devel
+
+Name: depth2laser
+Description: Description of depth2laser
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/nvidia/jetson_ws/devel/lib 
+Requires: 
